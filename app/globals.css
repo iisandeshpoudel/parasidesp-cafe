@@ -5,7 +5,7 @@
 :root {
   --foreground-rgb: 246, 232, 217;
   --background-rgb: 27, 26, 23;
-  
+
   /* Custom colors */
   --dark-espresso: 27, 26, 23;
   --charcoal-roast: 44, 42, 37;
@@ -44,60 +44,65 @@
   * {
     @apply border-border;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-background text-foreground;
     background-color: rgb(var(--dark-espresso));
     color: rgb(var(--rich-almond-cream));
     font-family: var(--font-montserrat), sans-serif;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-playfair), serif;
   }
-  
+
   .menu-item {
     font-family: var(--font-cormorant), serif;
   }
-  
+
   /* Custom animations */
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  
-  @keyframes shimmer {
-    0% { background-position: -100% 0; }
-    100% { background-position: 200% 0; }
-  }
-  
+
   @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
-  
+
   .animate-fade-in {
     animation: fadeIn 0.8s ease-out forwards;
   }
-  
-  .animate-shimmer {
-    background: linear-gradient(90deg, 
-      rgba(var(--burnt-sienna), 0.8) 0%, 
-      rgba(var(--burnt-sienna), 1) 50%, 
-      rgba(var(--burnt-sienna), 0.8) 100%);
-    background-size: 200% 100%;
-    animation: shimmer 3s infinite;
-  }
-  
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
-  
+
+  /* Removing unused button animations */
+
   /* Glassmorphism */
   .glass {
     background: rgba(var(--charcoal-roast), 0.25);
@@ -105,21 +110,21 @@
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(var(--copper-rose), 0.18);
   }
-  
+
   /* Depth and shadows */
   .depth-shadow {
     box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.5);
   }
-  
+
   .inner-shadow {
     box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
   }
-  
+
   /* Grain texture overlay */
   .grain {
     position: relative;
   }
-  
+
   .grain::after {
     content: "";
     position: absolute;
@@ -132,65 +137,439 @@
     pointer-events: none;
     z-index: 100;
   }
-  
+
   /* Parallax effect */
   .parallax {
     transform-style: preserve-3d;
-    perspective: 1000px;
+    perspective: 1500px;
+    transform: translateZ(0);
+    will-change: transform;
   }
-  
+
   .parallax-layer {
     transform: translateZ(0);
-    transition: transform 0.5s ease-out;
+    transition: transform 0.1s linear;
+    will-change: transform;
+    backface-visibility: hidden;
   }
-  
+
   .parallax-deep {
+    transform: translateZ(-200px) scale(1.3);
+  }
+
+  .parallax-medium {
     transform: translateZ(-100px) scale(1.15);
   }
-  
-  .parallax-medium {
+
+  .parallax-shallow {
     transform: translateZ(-50px) scale(1.075);
   }
-  
-  .parallax-shallow {
-    transform: translateZ(-25px) scale(1.0375);
-  }
-  
+
   /* Hover effects */
   .hover-lift {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
+
   .hover-lift:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
   }
-  
-  /* Order button elegant glow animation */
+
+  /* Order button elegant glow animation - ENHANCED */
   @keyframes elegantGlow {
-    0% { box-shadow: 0 0 0 0 rgba(var(--burnt-sienna), 0.2); }
-    50% { box-shadow: 0 0 20px 5px rgba(var(--burnt-sienna), 0.4); }
-    100% { box-shadow: 0 0 0 0 rgba(var(--burnt-sienna), 0.2); }
+    0% {
+      box-shadow: 0 0 0 0 rgba(var(--burnt-sienna), 0.3);
+    }
+    50% {
+      box-shadow: 0 0 25px 8px rgba(var(--burnt-sienna), 0.6);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(var(--burnt-sienna), 0.3);
+    }
   }
-  
+
   .elegant-glow {
-    animation: elegantGlow 4s ease-in-out infinite;
+    animation: elegantGlow 3s ease-in-out infinite;
   }
-  
-  /* Subtle button border animation */
+
+  /* Enhanced border animation with more visibility */
   @keyframes subtleBorderGlow {
-    0% { border-color: rgba(var(--burnt-sienna), 0.3); }
-    50% { border-color: rgba(var(--burnt-sienna), 0.6); }
-    100% { border-color: rgba(var(--burnt-sienna), 0.3); }
+    0% {
+      border-color: rgba(var(--burnt-sienna), 0.7);
+    }
+    50% {
+      border-color: rgba(var(--golden-amber), 1);
+      box-shadow: 0 0 10px rgba(var(--golden-amber), 0.5);
+    }
+    100% {
+      border-color: rgba(var(--burnt-sienna), 0.7);
+    }
   }
-  
+
   .subtle-border {
-    border: 2px solid rgba(var(--burnt-sienna), 0.3);
-    animation: subtleBorderGlow 8s ease-in-out infinite;
+    border: 3px solid rgba(var(--burnt-sienna), 0.7);
+    animation: subtleBorderGlow 4s ease-in-out infinite;
   }
-  
+
   /* Accent text */
   .accent-text {
     color: rgb(var(--burnt-sienna));
+  }
+}
+
+@layer components {
+  .heartbeat {
+    animation: heartbeat 4s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    3% {
+      transform: scale(1.02);
+    }
+    6% {
+      transform: scale(1);
+    }
+    9% {
+      transform: scale(1.03);
+    }
+    12% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .premium-button {
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .premium-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(
+      circle,
+      rgba(var(--burnt-sienna), 0.2) 0%,
+      transparent 60%
+    );
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease-out;
+  }
+
+  .premium-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Enhanced border glow */
+  @keyframes borderGlow {
+    0%,
+    100% {
+      border-color: rgba(var(--golden-amber), 0.7);
+      box-shadow: 0 0 12px rgba(var(--golden-amber), 0.3),
+        inset 0 0 6px rgba(var(--golden-amber), 0.2);
+    }
+    50% {
+      border-color: rgba(var(--golden-amber), 1);
+      box-shadow: 0 0 20px rgba(var(--golden-amber), 0.5),
+        inset 0 0 10px rgba(var(--golden-amber), 0.3);
+    }
+  }
+
+  .border-glow {
+    animation: borderGlow 3s ease-in-out infinite;
+    border-width: 3px !important;
+  }
+
+  /* Premium text reveal animation */
+  @keyframes textReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  .text-reveal {
+    animation: textReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .text-reveal-delayed {
+    opacity: 0;
+    animation: textReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Smooth hover transitions */
+  .hover-transition {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Premium gradient text */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--golden-amber)) 0%,
+      rgb(var(--burnt-sienna)) 50%,
+      rgb(var(--copper-rose)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: gradientFlow 8s ease infinite;
+  }
+
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Enhanced scroll indicator */
+  .scroll-indicator {
+    animation: scrollPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(10px);
+      opacity: 0.4;
+    }
+  }
+
+  /* New coffee steam animation for order button */
+  @keyframes steamRise {
+    0% {
+      opacity: 0;
+      transform: translateY(5px) translateX(0);
+    }
+    20% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateY(-20px) translateX(-5px) scale(1.5);
+    }
+    80% {
+      opacity: 0.2;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-30px) translateX(5px) scale(0.7);
+    }
+  }
+
+  /* Order button coffee-pour animation */
+  @keyframes coffeePour {
+    0% {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+
+  /* Order button magnetic hover effect */
+  .magnetic-button {
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(800px);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .magnetic-button:hover {
+    transform: perspective(800px) translateZ(15px);
+  }
+
+  /* Elegant shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .shimmer-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--rich-almond-cream), 0.4),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.5s infinite;
+    pointer-events: none;
+  }
+
+  /* Order button ripple effect */
+  .ripple-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple-effect::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(
+      circle,
+      rgba(var(--rich-almond-cream), 0.4) 0%,
+      rgba(var(--rich-almond-cream), 0.2) 30%,
+      transparent 70%
+    );
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0s;
+  }
+
+  .ripple-effect:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  }
+
+  .animated-arrow {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .animated-arrow-parent:hover .animated-arrow {
+    transform: translateX(8px);
+  }
+
+  /* Steam particles for coffee button */
+  .steam-container {
+    position: absolute;
+    top: -20px;
+    width: 100%;
+    height: 30px;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 5;
+  }
+
+  .steam-particle {
+    position: absolute;
+    background: rgba(var(--rich-almond-cream), 0.8);
+    border-radius: 50%;
+    filter: blur(1px);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .steam-particle:nth-child(1) {
+    width: 10px;
+    height: 10px;
+    left: 30%;
+    animation: steamRise 2.5s ease-out infinite;
+    animation-delay: 0.2s;
+  }
+
+  .steam-particle:nth-child(2) {
+    width: 8px;
+    height: 8px;
+    left: 45%;
+    animation: steamRise 2.8s ease-out infinite;
+    animation-delay: 0.7s;
+  }
+
+  .steam-particle:nth-child(3) {
+    width: 9px;
+    height: 9px;
+    left: 60%;
+    animation: steamRise 2.3s ease-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  /* Order button pulsating aura */
+  @keyframes aura-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(var(--burnt-sienna), 0.3);
+    }
+    50% {
+      box-shadow: 0 0 25px 8px rgba(var(--burnt-sienna), 0.6);
+    }
+  }
+
+  .pulsating-aura {
+    animation: aura-pulse 3s ease-in-out infinite;
+  }
+
+  /* Enhanced coffee icon animation */
+  @keyframes coffeeWiggle {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-12deg);
+    }
+    75% {
+      transform: rotate(12deg);
+    }
+  }
+
+  .coffee-icon {
+    transition: all 0.3s ease;
+  }
+
+  .coffee-icon-parent:hover .coffee-icon {
+    animation: coffeeWiggle 1s ease-in-out;
+    transform: scale(1.2);
+  }
+
+  /* Scale effect for button */
+  .scale-on-hover {
+    transition: transform 0.3s ease;
+  }
+
+  .scale-on-hover:hover {
+    transform: scale(1.05);
   }
 }
